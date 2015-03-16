@@ -15,14 +15,26 @@ namespace ConsoleAppTest1
             Console.WriteLine("Hello, World!");
 
             strDT = GetCurrentDateTime();
-            Console.WriteLine("Current DateTime is {0}", strDT);
+            Console.WriteLine("Current LOC DateTime is {0}", strDT);
+
+            strDT = GetCurrentUTCDateTime();
+            Console.WriteLine("Current UTC DateTime is {0}", strDT);
 
             Console.ReadKey();
         }
 
         static string GetCurrentDateTime()
         {
+
             return DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss, dddd");
+        }
+
+        static string GetCurrentUTCDateTime()
+        {
+            TimeZone zone = TimeZone.CurrentTimeZone;
+            // Demonstrate ToUniversalTime.
+            DateTime universal = zone.ToUniversalTime(DateTime.Now);
+            return universal.ToString("yyyy-MM-dd HH:mm:ss, dddd");
         }
     }
 }
